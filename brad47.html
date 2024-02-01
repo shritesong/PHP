@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function test1(){
+            $('#id1').load('brad48.php?max=' + $('#max').val()); //將brad46.php 讀進id1  
+        }
+
+        function test2(){
+            $.get('brad48.php?max=' + $('#max').val(),function(data,status){
+                if(status =='success'){
+                    $('#id1').html(data);
+                }
+            });
+        }
+
+        function test3(){
+            $.post('brad48.php',
+            {
+                max: $('$max').val()
+            },
+            function(data,status){
+                if(status =='success'){
+                    $('#id1').html(data);
+                }
+            });
+        }
+
+        function test4(){
+            $.ajax({
+                url:'brad48.php',
+                method: 'post',
+                data:{
+                    max: $('#max').val()
+                },
+                success:function(){
+                    $('#id1').html(data);
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    Lottery: <span id="id1"></span><br>
+    MAX: <input type="number" id="max"><br>
+    <button onclick="test1()">Test(LOAD)</button>
+    <button onclick="test2()">Test2(GET)</button>
+    <button onclick="test3()">Test3(POST)</button>
+    <button onclick="test4()">Test4(AJAX)</button>
+</body>
+</html>
