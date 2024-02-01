@@ -21,7 +21,7 @@
         function test3(){
             $.post('brad48.php',
             {
-                max: $('$max').val()
+                max: $('#max').val()
             },
             function(data,status){
                 if(status =='success'){
@@ -37,7 +37,7 @@
                 data:{
                     max: $('#max').val()
                 },
-                success:function(){
+                success:function(data){
                     $('#id1').html(data);
                 }
             })
