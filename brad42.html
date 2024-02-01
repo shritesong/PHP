@@ -16,9 +16,15 @@
 <h1>register</h1>
 <hr>
 
-<form action="brad42.php" method="POST" onsubmit="return true"> <!--onsubmit 送出之前檢查 -->
+<form action="brad43.php" 
+    method="POST" 
+    enctype="multipart/form-data" 
+    onsubmit="return true"> <!--onsubmit 送出之前檢查 -->
+
     Account: <input name="account" id="account" onblur="checkAccount()"><span id="mesg"></span><br>
     Password: <input type="password" name="passwd"><br>
     Name: <input name="name"><br>
+    Icon: <input type="file" name="icon"><br>
+    
     <input type="submit" value="Register">
 </form>

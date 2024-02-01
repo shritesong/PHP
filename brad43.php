@@ -6,6 +6,10 @@
     $passwd =  password_hash($_POST['passwd'],PASSWORD_DEFAULT);
     $name =  $_POST['name'];
 
+    $icon = $_FILES['icon'];
+    $iconData = file_get_contents($icon['tmp_name']);
+    $icontype = $icon['type'];
+
     $mysqli = new mysqli('localhost','root','','iii');
     $mysqli->set_charset('utf8');
 
@@ -15,9 +19,9 @@
     $stmt->execute();
     $stmt->store_result();
     if($stmt->num_rows()==0){
-        $sql = 'INSERT INTO member (account,passwd,name) VALUES (?,?,?)';
+        $sql = 'INSERT INTO member (account,passwd,name,icon,icontype) VALUES (?,?,?,?,?)';
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param('sss',$account,$passwd,$name);
+        $stmt->bind_param('sssss',$account,$passwd,$name,$iconData,$icontype);
 
         if($stmt->execute()){
             echo 'ok';
