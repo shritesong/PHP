@@ -123,7 +123,7 @@
         public function getIcon(){return $this->icon;}
         public function getIcontype(){return $this->icontype;}
 
-  
+
     }
 
 ?>
