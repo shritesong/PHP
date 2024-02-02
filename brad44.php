@@ -1,4 +1,6 @@
 <?php
+    include('bradapis.php');
+    session_start();
 //登入驗證
     if(isset($_POST['account'])){
         $account = $_POST['account']; $passwd = $_POST['passwd'];
@@ -10,9 +12,11 @@
         $stmt->execute();
         $stmt->store_result();
         if($stmt->num_rows > 0){
-            $stmt->bind_result($id,$account,$hashpasswd,$name);
+            $stmt->bind_result($id,$account,$hashpasswd,$name,$icon,$icontype);
             $stmt->fetch();
             if(password_verify($passwd,$hashpasswd)){
+                $_SESSION['member'] = new Member($id,$account,$hashpasswd,$name,$icon,$icontype);
+
                 header('Location: main.php');
             }
         }
